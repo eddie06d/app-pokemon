@@ -1,0 +1,24 @@
+<app-navbar></app-navbar>
+<div class="container mt-3">
+  <div class="card mb-3">
+    <div class="card-body">
+      <form (ngSubmit)="searchByType()">
+        <select class="form-select form-select-lg mb-3" (change)="catchFilter($event)">
+          <option value="" selected>Select type of Pokemon</option>
+          <option *ngFor="let tipo of listTypes" [value]="tipo.id">{{ tipo.type | titlecase }}</option>
+        </select>
+        <button type="submit" class="btn btn-primary btn-lg" [disabled]="!typePokemon">Search</button>
+      </form>
+    </div>
+  </div>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col" *ngFor="let poke of pokemons">
+      <div class="card">
+        <img [src]="poke.sprites.front_default" class="card-img-top" alt="img-pokemon">
+        <div class="card-body">
+          <h5 class="card-title">{{ poke.name }}</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
