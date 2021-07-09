@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  typePokemon: string = '';
+  typePokemon = '';
   listTypes: any[];
   pokemons: any[];
   pokemon: any;
@@ -16,23 +16,24 @@ export class DashboardComponent implements OnInit {
   constructor(private pokemonService: PokemonService, private http: HttpClient) { }
 
   ngOnInit(): void {
-    //this.pokemonService.getPokemonByName('pikachu').subscribe(data => console.log(data));
-    //this.pokemonService.getPokemonsByType(19).subscribe(data => console.log(data));
+    // this.pokemonService.getPokemonByName('pikachu').subscribe(data => console.log(data));
+    // this.pokemonService.getPokemonsByType(19).subscribe(data => console.log(data));
     this.listTypes = this.pokemonService.typesPokemon;
   }
 
-  catchFilter($event) {
-    //console.log($event.target.value);
+  catchFilter($event): void {
+    // console.log($event.target.value);
     this.typePokemon = $event.target.value;
   }
 
-  searchByType() {
+  searchByType(): void {
     this.pokemons = [];
+    // tslint:disable-next-line: radix
     this.pokemonService.getPokemonsByType(parseInt(this.typePokemon)).subscribe(data => {
-      for(let poke of data.pokemon){
+      for (const poke of data.pokemon){
         this.http.get(poke.pokemon.url).subscribe(p => this.pokemons.push(p));
       }
-      //console.log(data.pokemon);
+      // console.log(data.pokemon);
     });
   }
 

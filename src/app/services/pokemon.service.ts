@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class PokemonService {
-  url: string = 'https://pokeapi.co/api/v2/';
+  url = 'https://pokeapi.co/api/v2/';
   typesPokemon: any[] = [
     { id: 1, type: 'normal' },
     { id: 2, type: 'lucha' },
